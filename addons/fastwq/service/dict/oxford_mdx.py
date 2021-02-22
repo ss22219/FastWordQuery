@@ -79,6 +79,7 @@ class OxfordMdx(MdxService):
         result = ''
         html = parse_html(self.get_html())
         list = html.find_all('x-wr')
+        count = 0
         for item in list:
             x = item.x
             if x == None:
@@ -98,6 +99,9 @@ class OxfordMdx(MdxService):
                 continue
             url = links[len(links) - 1]['href'].replace('sound://','\\')
             result = result + '<li>' + enwords + ' ' + cnwords + self._fld_audio(url) + '</li>'
+            count = count + 1
+            if count == 4:
+                break
         return result
 
     def _fld_audio(self, audio):
