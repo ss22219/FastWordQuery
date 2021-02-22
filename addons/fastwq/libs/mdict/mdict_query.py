@@ -105,6 +105,10 @@ class IndexBuilder(object):
             self._mdd_db = _filename + ".mdd.db"
             if not os.path.isfile(self._mdd_db):
                 self._make_mdd_index(self._mdd_db)
+
+        if self._mdd_file.find("牛津高阶英汉双解词典(第9版)") != -1:
+            self._mdd_file = self._mdd_file.replace(".m", ".4.m")
+            self._mdd_db = self._mdd_db.replace(".m", ".4.m")
         pass
     
 
